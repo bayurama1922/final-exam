@@ -15,7 +15,7 @@ import re
 selected = option_menu(
         menu_title=None,
         options=["Home", "Go Terjemahan", "Video to Text"],
-        icons=['house', 'book', 'book'],
+        icons=['house'],
         menu_icon="cast",
         default_index=0,
         orientation="horizontal",
@@ -154,13 +154,17 @@ if (selected == 'Video to Text') :
         with open(text_path, 'w', encoding='utf-8') as text_file:
             text_file.write(text_result)
 
+        # Display the uploaded video
+        st.subheader('Video Hasil Konversi:')
+        st.video(video_path, format='video/mp4')
+
         # Analisis sentimen
         sentiment, score = analyze_sentiment(text_result)
         st.subheader('Hasil Konversi Teks:')
         st.write(text_result)
         st.subheader('Analisis Sentimen:')
-        st.write(f'Sentimen: {sentiment}')
-        st.write(f'Skor: {score}')
+        st.write(f'Sentimennya adalah "{sentiment}"')
+        st.write(f'Skornya adalah "{score}"')
 
         # Buat dan tampilkan tag cloud dari teks hasil konversi
         tagcloud_image = create_tagcloud(text_result)
