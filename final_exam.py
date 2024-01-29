@@ -165,10 +165,10 @@ if (selected == 'Video to Text') :
         # Analisis sentimen
         sentiment, score = analyze_sentiment(text_result)
         st.subheader('Hasil Konversi Teks:')
-        st.write(text_result)
+        st.success(text_result)
         st.subheader('Analisis Sentimen:')
-        st.write(f'Sentimennya adalah "{sentiment}"')
-        st.write(f'Skornya adalah "{score}"')
+        st.success(f'Sentimennya adalah "{sentiment}"')
+        st.success(f'Skornya adalah "{score}"')
 
         # Buat dan tampilkan tag cloud dari teks hasil konversi
         tagcloud_image = create_tagcloud(text_result)
