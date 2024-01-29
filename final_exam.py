@@ -68,7 +68,11 @@ def recognize_speech(audio_path):
     recognizer = sr.Recognizer()
     with sr.AudioFile(audio_path) as source:
         audio_file = recognizer.record(source)
-    text_result = recognizer.recognize_google(audio_file, language='id-ID')
+    try:
+        text_result = recognizer.recognize_google(audio_file, language="id-ID")
+    except sr.UnknownValueError:
+        st.warning("Pengenalan suara tidak dapat memahami audio.")
+        text_result = ""
     return text_result
 
 if (selected == 'Go Terjemahan') :
